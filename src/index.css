@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* 🌈 Gradient background */
+  background-image: linear-gradient(135deg, #1890ff 0%, #f0f5ff 100%);
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px;
+  box-sizing: border-box;
+  overflow-y: auto; /* Allow vertical scrolling if content overflows */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* Responsive card styling */
+.ant-card {
+  width: 100%;
+  max-width: 800px; /* Increased max-width for better content fit */
+  margin: 8px auto;
+  border-radius: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Hover effect for card */
+.ant-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Ensure content inside card is responsive */
+.ant-space {
+  width: 100%;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+  .ant-card {
+    margin: 8px;
+    padding: 12px;
+  }
+
+  .ant-space-vertical {
+    gap: 12px; /* Reduce spacing for smaller screens */
+  }
+
+  .ant-select,
+  .ant-picker {
+    font-size: 14px; /* Slightly smaller font for inputs */
+  }
+}
+
+/* Ensure date picker and buttons scale properly */
+.ant-picker,
+.ant-btn {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Handle very small heights */
+@media (max-height: 600px) {
+  body {
+    padding: 8px;
+  }
+
+  .ant-card {
+    margin: 6px;
+  }
+}
