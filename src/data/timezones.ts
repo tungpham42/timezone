@@ -1,7 +1,26 @@
-// Complete IANA Timezone List
-// Generated from Intl.supportedValuesOf("timeZone")
+/**
+ * REF: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/supportedValuesOf
+ * * This attempts to use the native Intl API to get the comprehensive,
+ * up-to-date list of Canonical Timezones for the current runtime.
+ * * If the environment is too old to support Intl.supportedValuesOf,
+ * it falls back to the static list provided.
+ */
+declare global {
+  namespace Intl {
+    function supportedValuesOf(
+      key:
+        | "calendar"
+        | "collation"
+        | "currency"
+        | "numberingSystem"
+        | "timeZone"
+        | "unit"
+    ): string[];
+  }
+}
 
-export const TIMEZONES: string[] = [
+// Your original list serves as the fallback for legacy environments
+const FALLBACK_TIMEZONES: string[] = [
   "Africa/Abidjan",
   "Africa/Accra",
   "Africa/Addis_Ababa",
@@ -467,3 +486,18 @@ export const TIMEZONES: string[] = [
   "Pacific/Wallis",
   "UTC",
 ];
+
+export const TIMEZONES: string[] = (() => {
+  try {
+    // Check if the environment supports the modern Intl API
+    if (typeof Intl !== "undefined" && "supportedValuesOf" in Intl) {
+      return Intl.supportedValuesOf("timeZone");
+    }
+  } catch (error) {
+    console.warn(
+      "Intl.supportedValuesOf not supported, using fallback timezone list."
+    );
+  }
+
+  return FALLBACK_TIMEZONES;
+})();
